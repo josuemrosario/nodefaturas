@@ -12,6 +12,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 
 
+require('dotenv').config();
+require('./libs/dbconnect');
+           
+
 // rotas da aplicacao
 
 app.get('/', (req, res) => {
