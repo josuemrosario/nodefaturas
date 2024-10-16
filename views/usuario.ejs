@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('./partials/head') %>
+<body>
+    <div class="m-4">
+    <h1 class="text-emerald-500"><%= mensagem %></h1>
+    <% if (usuario) { %>
+        <p><%= usuario.email %></p>
+        <p><%= usuario.password %></p>
+    <% } %>
+</div>
+</body>
+</html>

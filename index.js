@@ -3,6 +3,7 @@ const porta = 3000
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const usuarioRoutes = require('./routes/usuario.route'); //rotas para tratar usuario
 
 
 // configurações iniciais
@@ -16,8 +17,6 @@ require('dotenv').config();
 require('./libs/dbconnect');
            
 
-// rotas da aplicacao
-
 app.get('/', (req, res) => {
     // res.send('rota raiz');
     res.render('index',{mensagem:'rota raiz'})
@@ -25,13 +24,16 @@ app.get('/', (req, res) => {
 
 app.get('/contato', (req, res) => {
     // res.send('rota contato');
-    res.render('index',{mensagem:'rota contato'})
+    res.render('index',{mensagem:'rota contato'}) 
 });
 
 app.get('/sobre', (req, res) => {
     // res.send('rota sobre');
     res.render('index',{mensagem:'rota sobre'})
 });
+
+//rotas de usuario
+app.use('/usuarios', usuarioRoutes);
 
 app.get('*', (req, res) => {
     // res.status(404).send('Rota nao encontrada');
