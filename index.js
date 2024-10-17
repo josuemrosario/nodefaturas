@@ -3,7 +3,11 @@ const porta = 3000
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const usuarioRoutes = require('./routes/usuario.route'); //rotas para tratar usuario
+const usuarioRoutes = require('./routes/usuario.route');
+const session = require('express-session'); // Middleware usado para autenticacao
+const flash = require('connect-flash'); // deve ser chamada depois de express-session.
+const dashboardRoutes = require('./routes/dashboard.route');
+
 
 
 // configurações iniciais
@@ -11,29 +15,44 @@ app.use(morgan('dev'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(flash());
 
 
 require('dotenv').config();
 require('./libs/dbconnect');
+
+
+//configuracao de sessão (express session)
+app.use(
+    session({
+    secret: process.env.AUTH_SECRET,
+    saveUninitialized: true,
+    resave: false,
+    })
+);
            
 
-app.get('/', (req, res) => {
-    // res.send('rota raiz');
-    res.render('index',{mensagem:'rota raiz'})
-});
+// app.get('/', (req, res) => {
+//     // res.send('rota raiz');
+//     res.render('index',{mensagem:'rota raiz'})
+// });
 
-app.get('/contato', (req, res) => {
-    // res.send('rota contato');
-    res.render('index',{mensagem:'rota contato'}) 
-});
+// app.get('/contato', (req, res) => {
+//     // res.send('rota contato');
+//     res.render('index',{mensagem:'rota contato'}) 
+// });
 
-app.get('/sobre', (req, res) => {
-    // res.send('rota sobre');
-    res.render('index',{mensagem:'rota sobre'})
-});
+// app.get('/sobre', (req, res) => {
+//     // res.send('rota sobre');
+//     res.render('index',{mensagem:'rota sobre'})
+// });
 
-//rotas de usuario
-app.use('/usuarios', usuarioRoutes);
+// //rotas de usuario
+// app.use('/usuarios', usuarioRoutes);
+
+app.use('/', usuarioRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 app.get('*', (req, res) => {
     // res.status(404).send('Rota nao encontrada');
