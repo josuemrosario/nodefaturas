@@ -34,6 +34,7 @@ router.get('/cadastrar', (req, res) => {
         {
             titulo: 'Cadastrar-se',
             erros: req.flash('erros'),
+            dadosPreenchidos: req.flash('dadosPreenchidos')[0],
         }
     );
 });

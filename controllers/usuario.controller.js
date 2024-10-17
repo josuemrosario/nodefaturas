@@ -46,6 +46,7 @@ const cadastrarUsuario = async (req, res) => {
     if (!errosValidacao.isEmpty()) {
         const erros = errosValidacao.array();
         req.flash('erros', erros);
+        req.flash('dadosPreenchidos', req.body); //dados preenchidos sao retornados para o usuario
         return res.redirect('/cadastrar');
     }
 
