@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-    <html lang="pt-BR">
-    <%- include('../partials/head') %>
-<body>
-    <h1>Pagina de dashboard</h1>
-</body>
+<html lang="pt-BR">
+  <%- include('../partials/head') %>
+  <body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+      <%- include('../partials/menu') %>
+      <div class="ml-56 flex-grow p-10 overflow-y-auto">
+        <h1 class="mb-4 text-xl md:text-2xl">Dashboard</h1>
+      </div>
+    </div>
+    <%- include('../partials/script') %>
+  </body>
+</html>

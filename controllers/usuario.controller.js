@@ -1,6 +1,7 @@
 // Necessario importar sempre que for usar o modelo usuario
 const Usuario = require('../models/usuario.model');
 const { body, validationResult } = require('express-validator');
+var bcrypt = require('bcryptjs');
 
 
 
@@ -33,7 +34,7 @@ const validarCadastro = [
     body('senha', 'Senha não pode ser vazia').notEmpty(),
     body('senha', 'Senha deve ter mais de 6 caracteres').isLength({ min: 6 }),
     body('repetirSenha', 'Repita a senha').notEmpty(),
-    body('repetirSenha', 'Senhas sao diferentes').custom((value, { req }) => (value === req.body.password)),
+    body('repetirSenha', 'Senhas sao diferentes').custom((value, { req }) => (value === req.body.repetirSenha)),
     ];
 
 
@@ -58,7 +59,7 @@ const cadastrarUsuario = async (req, res) => {
     const query = { email };
         
     // pesquisa no mongoDB se o email já existe
-    const usuarioExiste = await User.findOne(query);
+    const usuarioExiste = await Usuario.findOne(query);
     
     if (usuarioExiste) {
     
@@ -77,6 +78,13 @@ const cadastrarUsuario = async (req, res) => {
         
         //userid da sessão
         req.session.userId = result._id;
+        
+
+        //Mensagem informando que o cadastro foi um sucesso
+        req.flash('info', {
+            mensagem: 'Usuario cadastrado com sucesso',
+            type: 'success'
+        });
         
         
         // redireciona para a pagina principal
