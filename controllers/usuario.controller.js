@@ -1,7 +1,7 @@
 // Necessario importar sempre que for usar o modelo usuario
 const Usuario = require("../models/usuario.model");
 const { body, validationResult } = require("express-validator");
-var bcrypt = require("bcryptjs");
+var bcrypt = require("bcrypt");
 
 // cria um usuario (hard coded por enquanto)
 // const createUsuario = async (req, res) => {
@@ -36,8 +36,8 @@ const validarCadastro = [
 ];
 
 const validarLogin = [
-  body("email", "Email não pode está vazio").notEmpty(),
-  body("senha", "Senha nãop pode estar vazia").notEmpty(),
+  body("email", "Email não pode estar vazio").notEmpty(),
+  body("senha", "Senha não pode estar vazia").notEmpty(),
 ];
 
 // cadastra um usuario
@@ -95,12 +95,12 @@ const loginUsuario = async (req, res) => {
     req.flash("dadosPreenchidos", req.body);
     return res.redirect("/login");
   }
-  const { email, password } = req.body;
-  const usuario = await Usuario.findOne({ email });
-  if (usuario) {
-    const senhaIgual = await bcrypt.compare(password, Usuario.senha);
+  const { email, senha } = req.body;
+  const dadosUsuario = await Usuario.findOne({ email });
+  if (dadosUsuario) {
+    const senhaIgual = await bcrypt.compare(senha, dadosUsuario.password);
     if (senhaIgual) {
-      req.session.userId = user._id;
+      req.session.userId = dadosUsuario._id;
       req.flash("info", {
         mensagem: "Login ok",
         type: "success",
