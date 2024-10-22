@@ -6,6 +6,9 @@ const {
     // deleteUsuario,
     validarCadastro, //valida se os dado foram enviado corretamente
     cadastrarUsuario, // cadastra o usuario
+    validarLogin,
+    loginUsuario,
+    logoutUsuario
 
 } = require('../controllers/usuario.controller');
 
@@ -16,7 +19,8 @@ const {
 router.get('/', (req, res) => {
     res.render('pages/index', 
         { 
-            titulo: 'Faturas' 
+            titulo: 'Faturas', 
+            info: req.flash('info')[0],
         }
     );
 });
@@ -24,10 +28,18 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('pages/login', 
         {
+            
             titulo: 'Fazer login',
+            usuario: req.flash('data')[0],
+            info: req.flash('info')[0],
+            erros: req.flash('errors'),
+
         }
     );
 });
+
+router.post('/login', validarLogin,  loginUsuario);
+router.get('/logout', logoutUsuario);
 
 router.get('/cadastrar', (req, res) => {
     res.render('pages/cadastrar', 

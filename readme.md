@@ -24,3 +24,7 @@ npm run dev
 ## Editor de codigo
 
 Desenvolvido utilizando o vscode
+
+## Erros ao abrir o mongodb
+
+Observe se o caminho que esta sendo chamado dentro de abrir_mongo.bat corresponde a versao instalada no computador. Em caso negativo edite o caminho antes de rodar o bat.
