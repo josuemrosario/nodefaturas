@@ -1,0 +1,71 @@
+<h1 class="mb-4 text-xl md:text-2xl"><%- title %></h1>
+<form action="<%- formAction %>" method="post">
+  <div class="rounded-md bg-slate-100 p-4 md:p-6">
+    <div class="flex flex-col gap-4">
+      <%- include('../partials/formErros') %>
+      <div class="form-control w-full gap-2">
+        <span class="label-text">Nome do Cliente</span>
+        <label for="name" class="input input-bordered flex items-center gap-2">
+          <i class="fa-regular fa-user"></i>
+          <input
+            id="nome"
+            name="nome"
+            type="text"
+            class="grow"
+            placeholder="nome do cliente"
+            value="<%=cliente?.name || '' %>"
+          />
+        </label>
+      </div>
+      <div class="form-control w-full gap-2">
+        <span class="label-text">Email</span>
+        <label for="email" class="input input-bordered flex items-center gap-2">
+          <i class="fa-regular fa-envelope"></i>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="grow"
+            placeholder="email@email.com"
+            value="<%= cliente?.email || '' %>"
+          />
+        </label>
+      </div>
+      <div class="form-control w-full gap-2">
+        <span class="label-text">Telefone</span>
+        <label for="telefone" class="input input-bordered flex items-center gap-2">
+          <i class="fa-solid fa-phone"></i>
+          <input
+            id="telefone"
+            name="telefone"
+            type="tel"
+            class="grow"
+            placeholder="+1223456"
+            value="<%=cliente?.telefone || '' %>"
+          />
+        </label>
+      </div>
+      <div class="form-control w-full gap-2">
+        <span class="label-text">Endereço</span>
+        <label
+          for="endereco"
+          class="input input-bordered flex items-center gap-2"
+        >
+          <i class="fa-regular fa-address-card"></i>
+          <input
+            id="endereco"
+            name="endereco"
+            type="text"
+            class="grow"
+            placeholder="Nome Rua, Bairro, /estado"
+            value="<%= cliente?.endereco || '' %>"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="mt-6 flex justify-end gap-4">
+      <a class="btn btn-ghost" href="/dashboard/clientes">Cancel</a>
+      <button type="submit" class="btn btn-primary"><%= titulo %></button>
+    </div>
+  </div>
+</form>

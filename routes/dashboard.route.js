@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const clientesRouter = require('./cliente.route');
 
 router.get('/', (req, res) => {
     res.render('pages/dashboard', 
@@ -9,5 +10,7 @@ router.get('/', (req, res) => {
 
         });
 });
+
+router.use('/clientes',clientesRouter); // rota dashboard/clientes
 
 module.exports = router;

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <%- include('../partials/head') %>
+  <body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+      <%- include('../partials/menu') %>
+      <div class="ml-56 flex-grow p-10 overflow-y-auto">
+        <% if (tipo === 'dados') { %> <%- include('../partials/dadosCliente') %>
+        <% } else { %> <%- include('../partials/formCliente') %> <% } %>
+      </div>
+    </div>
+    <%- include('../partials/script') %>
+  </body>
+</html>

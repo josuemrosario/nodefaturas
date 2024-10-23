@@ -1,0 +1,101 @@
+<div class="w-full">
+  <div class="flex w-full items-center justify-between">
+    <h1 class="text-2xl"><%= titulo %></h1>
+  </div>
+
+  <!-- INICIO formulario de pesquisa clientes -->
+  <form>
+    <div class="mt-4 flex items-center justify-between gap-2 md:mt-8">
+      <div class="relative flex flex-1 flex-shrink-0">
+        <label
+          for="pesquisar"
+          class="input input-bordered flex items-center gap-2 w-full"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            id="pesquisar"
+            name="pesquisar"
+            type="text"
+            class="grow"
+            placeholder="Pesquisar Clientes..."
+          />
+        </label>
+      </div>
+      <a class="btn btn-primary" href="clientes/criar">
+        <i class="fa-solid fa-plus fa-lg mr-2"></i>
+        Novo Cliente
+      </a>
+    </div>
+  </form>
+  <!-- FIM formulario de pesquisa clientes -->
+
+  <!-- INICIO tabela dados clientes -->
+  <div class="mt-6 overflow-x-auto bg-white rounded-lg p-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Endereço</th>
+          <th>Telefone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dadosclientes.forEach(function(cliente){ %>
+        <tr>
+          <td><%= cliente.nome %></td>
+          <td><%= cliente.email %></td>
+          <td><%= cliente.endereco %></td>
+          <td><%= cliente.telefone %></td>
+          <td>
+            <div class="flex justify-end gap-3">
+              <a
+                class="rounded-md border p-2 hover:bg-gray-100"
+                href="clientes/<%= cliente._id%>/editar"
+                ><i class="fa-solid fa-pen-to-square fa-lg"></i
+              ></a>
+              <button
+                class="rounded-md border p-2 hover:bg-gray-100"
+                onclick="modalExclusao('<%= cliente._id %>')"
+              >
+                <span class="sr-only">Excluir</span
+                ><i class="fa-solid fa-trash fa-lg"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <!-- FIM tabela dados clientes -->
+
+  <!-- INICIO Modal de confirmacao de exclusao de clientes -->
+  <dialog id="delete-modal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Tem certeza?</h3>
+      <p class="py-4">
+        Todas as faturas relativas a este cliente serão excluidas
+      </p>
+      <div class="modal-action">
+        <form id="delete-form" method="post">
+          <button class="btn btn-danger">OK</button>
+        </form>
+        <form method="dialog"><button class="btn">Cancelar</button></form>
+      </div>
+    </div>
+  </dialog>
+  <!-- FIM Modal de confirmacao de exclusao de clientes -->
+
+  <!-- INICIO Script mostra modal de exclusão -->
+  <script>
+    function modalExclusao(IdCliente) {
+      const modal = document.querySelector("#delete-modal");
+      const deleteForm = document.querySelector("#delete-form");
+      deleteForm.setAttribute("action", `customers/${IdCliente}/deletar`);
+      modal.showModal();
+    }
+  </script>
+  <!-- FIM Script mostra modal de exclusão -->
+</div>
