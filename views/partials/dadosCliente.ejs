@@ -21,7 +21,7 @@
           />
         </label>
       </div>
-      <a class="btn btn-primary" href="clientes/criar">
+      <a class="btn btn-primary" href="clientes/cadastrar">
         <i class="fa-solid fa-plus fa-lg mr-2"></i>
         Novo Cliente
       </a>
@@ -93,7 +93,7 @@
     function modalExclusao(IdCliente) {
       const modal = document.querySelector("#delete-modal");
       const deleteForm = document.querySelector("#delete-form");
-      deleteForm.setAttribute("action", `customers/${IdCliente}/deletar`);
+      deleteForm.setAttribute("action", `clientes/${IdCliente}/deletar`);
       modal.showModal();
     }
   </script>

@@ -1,4 +1,4 @@
-<h1 class="mb-4 text-xl md:text-2xl"><%- title %></h1>
+<h1 class="mb-4 text-xl md:text-2xl"><%- titulo %></h1>
 <form action="<%- formAction %>" method="post">
   <div class="rounded-md bg-slate-100 p-4 md:p-6">
     <div class="flex flex-col gap-4">
@@ -13,7 +13,7 @@
             type="text"
             class="grow"
             placeholder="nome do cliente"
-            value="<%=cliente?.name || '' %>"
+            value="<%=dadosCliente?.nome || '' %>"
           />
         </label>
       </div>
@@ -27,7 +27,7 @@
             type="email"
             class="grow"
             placeholder="email@email.com"
-            value="<%= cliente?.email || '' %>"
+            value="<%= dadosCliente?.email || '' %>"
           />
         </label>
       </div>
@@ -41,7 +41,7 @@
             type="tel"
             class="grow"
             placeholder="+1223456"
-            value="<%=cliente?.telefone || '' %>"
+            value="<%=dadosCliente?.telefone || '' %>"
           />
         </label>
       </div>
@@ -58,7 +58,7 @@
             type="text"
             class="grow"
             placeholder="Nome Rua, Bairro, /estado"
-            value="<%= cliente?.endereco || '' %>"
+            value="<%= dadosCliente?.endereco || '' %>"
           />
         </label>
       </div>
