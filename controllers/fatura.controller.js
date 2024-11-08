@@ -1,5 +1,6 @@
 const Cliente = require("../models/cliente.model");
 const Fatura = require("../models/fatura.model");
+const { BRReal } = require("../libs/formatter");
 const { body, validationResult } = require("express-validator");
 
 // Validacao da fatura
@@ -13,8 +14,6 @@ const validarFatura = [
 // Mostra as faturas cadastradas
 const mostrarFaturas = async (req, res) => {
   const query = { usuarioRef: req.session.userId };
-  // console.log("Query ===>", query);
-  // console.log("find ===>", Fatura.find(query));
   const faturas = await Fatura.find(query).populate("clienteRef");
   console.log("faturas ===>", faturas);
 
@@ -22,6 +21,7 @@ const mostrarFaturas = async (req, res) => {
     titulo: "Faturas",
     tipo: "dados",
     faturas,
+    BRReal,  // Funcao que formata um numero em R$ Reais
     info: req.flash("info")[0],
   });
 };

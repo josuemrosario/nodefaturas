@@ -40,7 +40,7 @@
         <% faturas.forEach(function(fatura){ %>
         <tr>
           <td><%= fatura.clienteRef.nome %></td>
-          <td><%= fatura.total %></td>
+          <td><%= BRReal.format(fatura.total) %></td>
           <td><%= fatura.data_vencto %></td>
           <td>
             <% if(fatura.status === 'paga') { %>
