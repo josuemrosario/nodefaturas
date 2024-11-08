@@ -1,0 +1,102 @@
+<div class="w-full">
+  <div class="flex w-full items-center justify-between">
+    <h1 class="text-2xl"><%= titulo %></h1>
+  </div>
+  <form>
+    <div class="mt-4 flex items-center justify-between gap-2 md:mt-8">
+      <div class="relative flex flex-1 flex-shrink-0">
+        <label
+          for="busca"
+          class="input input-bordered flex items-center gap-2 w-full"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            id="pesquisar"
+            name="pesquisar"
+            type="text"
+            class="grow"
+            placeholder="Pesquisar Faturas..."
+          />
+        </label>
+      </div>
+      <a class="btn btn-primary" href="faturas/criar">
+        <i class="fa-solid fa-plus fa-lg mr-2"></i>
+        Nova fatura
+      </a>
+    </div>
+  </form>
+  <div class="mt-6 overflow-x-auto bg-white rounded-lg p-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome do Cliente</th>
+          <th>Total</th>
+          <th>Data Vencimento</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% faturas.forEach(function(fatura){ %>
+        <tr>
+          <td><%= fatura.clienteRef.nome %></td>
+          <td><%= fatura.total %></td>
+          <td><%= fatura.data_vencto %></td>
+          <td>
+            <% if(fatura.status === 'paga') { %>
+            <span
+              class="ml-2 badge badge-sm badge-success p-3 gap-3 text-white"
+            >
+              Paga <i class="fa-regular fa-circle-check"></i>
+            </span>
+            <% } else { %>
+            <span class="ml-2 badge badge-sm badge-ghost p-3 gap-3">
+              Pendente <i class="fa-regular fa-clock"></i>
+            </span>
+            <% } %>
+          </td>
+          <td>
+            <div class="flex justify-end gap-3">
+              <a
+                class="rounded-md border p-2 hover:bg-gray-100"
+                href="faturas/<%= fatura._id %>/editar"
+              >
+                <i class="fa-solid fa-pen-to-square fa-lg"></i>
+              </a>
+              <button
+                class="rounded-md border p-2 hover:bg-gray-100"
+                onclick="deletarModal('<%= fatura._id %>')"
+              >
+                <span class="sr-only">Deletar</span
+                ><i class="fa-solid fa-trash fa-lg"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<dialog id="delete-modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Tem certeza ?</h3>
+    <p class="py-4">A fatura será deletada</p>
+    <div class="modal-action">
+      <form id="delete-form" method="post">
+        <button class="btn btn-danger">Ok</button>
+      </form>
+      <form method="dialog">
+        <button class="btn">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+<script>
+  function deletarModal(faturaId) {
+    const modal = document.querySelector("#delete-modal");
+    const deleteForm = document.querySelector("#delete-form");
+    deleteForm.setAttribute("action", `faturas/${faturaId}/deletar`);
+    modal.showModal();
+  }
+</script>
