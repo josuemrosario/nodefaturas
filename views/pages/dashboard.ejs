@@ -5,7 +5,53 @@
     <div class="flex h-screen overflow-hidden">
       <%- include('../partials/menu') %>
       <div class="ml-56 flex-grow p-10 overflow-y-auto">
-        <h1 class="mb-4 text-xl md:text-2xl">Dashboard</h1>
+        <h1 class="mb-4 text-2xl"><%= titulo %></h1>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-xl bg-white p-2 shadow-sm">
+            <div class="flex p-4">
+              <i aria-hidden="true" class="fa-solid fa-money-bills"></i>
+              <h3 class="ml-2 text-sm font-medium">Pagas</h3>
+            </div>
+            <p
+              class="truncate rounded-xl border-slate-200 border px-4 py-8 text-center text-2xl"
+            >
+              <%= BRReal.format(totalPagas) %>
+            </p>
+          </div>
+          <div class="rounded-xl bg-white p-2 shadow-sm">
+            <div class="flex p-4">
+              <i aria-hidden="true" class="fa-regular fa-clock"></i>
+              <h3 class="ml-2 text-sm font-medium">Pendentes</h3>
+            </div>
+            <p
+              class="truncate rounded-xl border-slate-200 border px-4 py-8 text-center text-2xl"
+            >
+              <%= BRReal.format(totalPendentes) %>
+            </p>
+          </div>
+          <div class="rounded-xl bg-white p-2 shadow-sm">
+            <div class="flex p-4">
+              <i aria-hidden="true" class="fa-regular fa-folder-open"></i>
+              <h3 class="ml-2 text-sm font-medium">Total Faturas</h3>
+            </div>
+            <p
+              class="truncate rounded-xl border-slate-200 border px-4 py-8 text-center text-2xl"
+            >
+              <%= contagemFaturas %>
+            </p>
+          </div>
+          <div class="rounded-xl bg-white p-2 shadow-sm">
+            <div class="flex p-4">
+              <i aria-hidden="true" class="fa-solid fa-users"></i>
+              <h3 class="ml-2 text-sm font-medium">Total de Clientes</h3>
+            </div>
+            <p
+              class="truncate rounded-xl border-slate-200 border px-4 py-8 text-center text-2xl"
+            >
+              <%= contagemClientes %>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
     <%- include('../partials/script') %>
