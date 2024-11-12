@@ -38,40 +38,42 @@
       </thead>
       <tbody>
         <% faturas.forEach(function(fatura){ %>
-        <tr>
-          <td><%= fatura.clienteRef.nome %></td>
-          <td><%= BRReal.format(fatura.total) %></td>
-          <td><%= fatura.data_vencto %></td>
-          <td>
-            <% if(fatura.status === 'paga') { %>
-            <span
-              class="ml-2 badge badge-sm badge-success p-3 gap-3 text-white"
-            >
-              Paga <i class="fa-regular fa-circle-check"></i>
-            </span>
-            <% } else { %>
-            <span class="ml-2 badge badge-sm badge-ghost p-3 gap-3">
-              Pendente <i class="fa-regular fa-clock"></i>
-            </span>
-            <% } %>
-          </td>
-          <td>
-            <div class="flex justify-end gap-3">
-              <a
-                class="rounded-md border p-2 hover:bg-gray-100"
-                href="faturas/<%= fatura._id %>/editar"
-              >
-                <i class="fa-solid fa-pen-to-square fa-lg"></i>
-              </a>
-              <button
-                class="rounded-md border p-2 hover:bg-gray-100"
-                onclick="deletarModal('<%= fatura._id %>')"
-              >
-                <span class="sr-only">Deletar</span
-                ><i class="fa-solid fa-trash fa-lg"></i>
-              </button>
-            </div>
-          </td>
+          <% if(fatura.clienteRef){  %>
+            <tr>
+              <td><%= fatura.clienteRef.nome  %></td>
+              <td><%= BRReal.format(fatura.total) %></td>
+              <td><%= fatura.data_vencto %></td>
+              <td>
+                <% if(fatura.status === 'paga') { %>
+                <span
+                  class="ml-2 badge badge-sm badge-success p-3 gap-3 text-white"
+                >
+                  Paga <i class="fa-regular fa-circle-check"></i>
+                </span>
+                <% } else { %>
+                <span class="ml-2 badge badge-sm badge-ghost p-3 gap-3">
+                  Pendente <i class="fa-regular fa-clock"></i>
+                </span>
+                <% } %>
+              </td>
+              <td>
+                <div class="flex justify-end gap-3">
+                  <a
+                    class="rounded-md border p-2 hover:bg-gray-100"
+                    href="faturas/<%= fatura._id %>/editar"
+                  >
+                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                  </a>
+                  <button
+                    class="rounded-md border p-2 hover:bg-gray-100"
+                    onclick="deletarModal('<%= fatura._id %>')"
+                  >
+                    <span class="sr-only">Deletar</span
+                    ><i class="fa-solid fa-trash fa-lg"></i>
+                  </button>
+                </div>
+              </td>
+              <% }; %>
         </tr>
         <% }); %>
       </tbody>

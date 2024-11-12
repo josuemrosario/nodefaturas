@@ -13,8 +13,16 @@ const validarFatura = [
 
 // Mostra as faturas cadastradas
 const mostrarFaturas = async (req, res) => {
-  const query = { usuarioRef: req.session.userId };
-  const faturas = await Fatura.find(query).populate("clienteRef");
+  const query = { usuarioRef: req.session.userId};
+  const { pesquisar } = req.query;
+  opcoesPopulate={path:"clienteRef"}
+
+  if(pesquisar){
+    opcoesPopulate['match'] = { nome: { $regex: pesquisar, $options: 'i' } };
+  }
+
+  const faturas = await Fatura.find(query).populate(opcoesPopulate);
+
   console.log("faturas ===>", faturas);
 
   res.render("pages/fatura", {

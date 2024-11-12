@@ -12,6 +12,19 @@ const validarCliente = [
 const mostrarClientes = async (req, res) => {
   console.log(req.session.userId);
   const query = { usuarioRef: req.session.userId };
+  
+  //verificando se existem pesquisas a ser feitas
+  const { pesquisar } = req.query;
+  if (pesquisar) {
+    query["$or"] = [
+      { nome: { $regex: pesquisar, $options: "i" } },
+      { email: { $regex: pesquisar, $options: "i" } },
+      { telefone: { $regex: pesquisar, $options: "i" } },
+      { endereco: { $regex: pesquisar, $options: "i" } },
+    ];
+  }
+
+
   const dadosclientes = await Cliente.find(query);
   res.render("pages/cliente", {
     titulo: "Clientes",
