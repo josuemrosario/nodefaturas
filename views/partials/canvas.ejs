@@ -1,0 +1,25 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const dados = JSON.parse('<%- retornoDados %>');
+  const ctx = document.getElementById('grafico-retorno');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: dados.map(item => item.mes),
+      datasets: [{
+        label: 'Retorno',
+        data: dados.map(item => item.retorno),
+
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

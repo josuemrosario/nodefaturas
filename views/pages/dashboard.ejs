@@ -6,6 +6,9 @@
       <%- include('../partials/menu') %>
       <div class="ml-56 flex-grow p-10 overflow-y-auto">
         <h1 class="mb-4 text-2xl"><%= titulo %></h1>
+
+        <!-- ====================== -->
+        <!--     FIM DOS CARDS      -->
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div class="rounded-xl bg-white p-2 shadow-sm">
             <div class="flex p-4">
@@ -52,8 +55,35 @@
             </p>
           </div>
         </div>
+        <!--     FIM DOS CARDS      -->
+        <!-- ====================== -->
+
+        <!-- ========================== -->
+        <!--     INICIO DO GRAFICO      -->
+
+        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+          <div class="w-full md:col-span-4">
+            <h2 class="mb-4 text-2xl">Retorno Recente</h2>
+            <div class="rounded-xl bg-white p-4">
+              <canvas id="grafico-retorno" width="600" height="400"></canvas>
+              <div class="flex items-center pb-2 pt-6">
+                <i aria-hidden="true" class="fa-regular fa-calendar fa-lg"></i>
+                <h3 class="ml-2 text-sm text-slate-1000">Ultimos 6 meses</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--     FIM DO GRAFICO         -->
+        <!-- ========================== -->
+
+        <!-- ================================== -->
+        <!--     INICIO DAS ULTIMAS FATURAS     -->
+        <!--     FIM DAS ULTIMAS FATURAS        -->
+        <!-- ================================== -->
       </div>
     </div>
+    <%- include('../partials/canvas') %>
     <%- include('../partials/script') %>
   </body>
 </html>

@@ -21,7 +21,7 @@ const mostrarFaturas = async (req, res) => {
     titulo: "Faturas",
     tipo: "dados",
     faturas,
-    BRReal,  // Funcao que formata um numero em R$ Reais
+    BRReal, // Funcao que formata um numero em R$ Reais
     info: req.flash("info")[0],
   });
 };
@@ -36,7 +36,7 @@ const criarFatura = async (req, res) => {
     return res.redirect("criar");
   }
   const novaFatura = req.body;
-  console.log("nova fatura =>", novaFatura);
+  console.log("nova fatura: ", novaFatura);
 
   novaFatura.usuarioRef = req.session.userId;
   await Fatura.create(novaFatura);
@@ -58,7 +58,6 @@ const obterClientes = async (req, res, next) => {
 const editarFatura = async (req, res) => {
   const faturaId = req.params.id;
   const fatura = await Fatura.findById(faturaId).populate("clienteRef");
-  console.log("editar fatura - fatura=>", fatura);
   const { clientes } = req;
   res.render("pages/fatura", {
     titulo: "Editar Fatura",
