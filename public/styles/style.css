@@ -1682,6 +1682,9 @@ html {
 .grid {
   display: grid;
 }
+.hidden {
+  display: none;
+}
 .h-24 {
   height: 6rem;
 }
@@ -1888,6 +1891,10 @@ html {
 .text-\[44px\] {
   font-size: 44px;
 }
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1905,6 +1912,9 @@ html {
 }
 .font-medium {
   font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
 }
 .text-emerald-500 {
   --tw-text-opacity: 1;
@@ -1945,15 +1955,15 @@ html {
 }
 @media (min-width: 640px) {
 
+  .sm\:block {
+    display: block;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (min-width: 768px) {
-
-  .md\:col-span-4 {
-    grid-column: span 4 / span 4;
-  }
 
   .md\:mt-8 {
     margin-top: 2rem;
@@ -1967,8 +1977,8 @@ html {
     width: 60%;
   }
 
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -2001,11 +2011,11 @@ html {
 }
 @media (min-width: 1024px) {
 
-  .lg\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lg\:grid-cols-8 {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

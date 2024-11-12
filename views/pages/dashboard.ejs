@@ -61,29 +61,61 @@
         <!-- ========================== -->
         <!--     INICIO DO GRAFICO      -->
 
-        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-          <div class="w-full md:col-span-4">
+        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+          <div class="w-full">
             <h2 class="mb-4 text-2xl">Retorno Recente</h2>
             <div class="rounded-xl bg-white p-4">
               <canvas id="grafico-retorno" width="600" height="400"></canvas>
               <div class="flex items-center pb-2 pt-6">
                 <i aria-hidden="true" class="fa-regular fa-calendar fa-lg"></i>
-                <h3 class="ml-2 text-sm text-slate-1000">Ultimos 6 meses</h3>
+                <h3 class="ml-2 text-sm text-slate-1000">Últimos 6 meses</h3>
               </div>
             </div>
           </div>
-        </div>
 
         <!--     FIM DO GRAFICO         -->
         <!-- ========================== -->
 
         <!-- ================================== -->
         <!--     INICIO DAS ULTIMAS FATURAS     -->
+        <div class="flex w-full flex-col">
+          <h2 class="mb-4 text-2xl">Últimas Faturas</h2>
+          <div class="flex grow flex-col justify-between rounded-xl bg-white p-4">
+            <div class="border-slate-200 border px-6">
+              <% ultimasFaturas.forEach(fatura => { %>
+              <div class="flex flex-row items-center justify-between py-4">
+                <div class="flex items-center">
+                  <p class="truncate font-semibold text-base">
+                    <%= fatura.clienteRef.nome %>
+                  </p>
+                  <p class="hidden text-sm text-slate-1000 sm:block">
+                    <% if(fatura.status === 'paga') { %>
+                    <span class="ml-2 badge badge-sm badge-success p-3 gap-3 text-white">
+                      Paga <i class="fa-regular fa-circle-check"></i>
+                    </span>
+                    <% } else { %>
+                    <span class="ml-2 badge badge-sm badge-ghost p-3 gap-3">
+                      Pendente <i class="fa-regular fa-clock"></i>
+                    </span>
+                    <% } %>
+                  </p>
+                </div>
+                <p class="truncate font-medium">
+                  <%= BRReal.format(fatura.total) %>
+                </p>
+              </div>
+              <% }) %>
+            </div>
+            <div class="flex items-center pb-2 pt-6">
+              <i aria-hidden="true" class="fa-regular fa-note-sticky fa-lg"></i>
+              <h3 class="ml-2 text-sm text-slate-1000">Últimas 5 Faturas</h3>
+            </div>
+          </div>
+        </div>
         <!--     FIM DAS ULTIMAS FATURAS        -->
         <!-- ================================== -->
       </div>
     </div>
-    <%- include('../partials/canvas') %>
-    <%- include('../partials/script') %>
+    <%- include('../partials/canvas') %> <%- include('../partials/script') %>
   </body>
 </html>

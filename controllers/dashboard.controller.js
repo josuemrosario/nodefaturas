@@ -38,12 +38,8 @@ const mostrarDashboard = async (req, res) => {
       .filter((fatura) => {
         // datas do banco estão no formato dd/mm/yyyy
         // necessário corrigir antes de fazer testes
-        const [dia, mes, ano] = fatura.data_vencto.split("/");
-        datacorrigida = new Date(
-          parseInt(ano),
-          parseInt(mes) - 1, // no objeto Date o mes começa em zero
-          parseInt(dia)
-        );
+
+        datacorrigida = corrigeData(fatura.data_vencto);
 
         return datacorrigida >= primeiroDia && datacorrigida <= ultimodia;
       })
@@ -51,7 +47,13 @@ const mostrarDashboard = async (req, res) => {
     retornoDados.unshift({ mes, retorno: retornoMensal });
   }
 
-  console.log(retornoDados);
+  // obtendo dados das ultimas 5 faturas
+  todasFaturas.sort((faturaAtual, proximaFatura) => {
+    data_faturaAtual = corrigeData(faturaAtual.data_vencto);
+    data_proximaFatura = corrigeData(proximaFatura.data_vencto);
+    return data_proximaFatura - data_faturaAtual;
+  });
+  const ultimasFaturas = todasFaturas.slice(0, 5);
 
   res.render("pages/dashboard", {
     titulo: "Dashboard",
@@ -60,10 +62,20 @@ const mostrarDashboard = async (req, res) => {
     contagemClientes,
     totalPagas,
     totalPendentes,
+    ultimasFaturas,
     BRReal,
     info: req.flash("info")[0],
   });
 };
+
+function corrigeData(data) {
+  const [dia, mes, ano] = data.split("/");
+  return new Date(
+    parseInt(ano),
+    parseInt(mes) - 1, // no objeto Date o mes começa em zero
+    parseInt(dia)
+  );
+}
 
 module.exports = {
   mostrarDashboard,
