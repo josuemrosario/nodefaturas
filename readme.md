@@ -39,14 +39,14 @@ npm i
 ```sh
 npm run devcss
 ```
-4 - Suba a instância do mongodb
+5 - Suba a instância do mongodb
 O bat abrir_mongo.bat sobe a instancia do mongoDb. 
 É necessário atualizar o caminho do mongodb.exe dentro do arquivo bat antes de rodar
 
 ```sh
 .\abrir_mongo.bat  
 ```
-5 - suba o servidor
+6 - suba o servidor
 
 ```sh
 npm run dev
@@ -55,10 +55,11 @@ npm run dev
 ## Erros conhecidos
 
 Erro:  Ao tentar rodar a instancia do  mongodb pelo arquivo abrir.bat o arquivo mongod.exe não é encontrado ou a instancia não fica ativa
+
 solução:
 Observe se o caminho que esta sendo chamado dentro de abrir_mongo.bat corresponde a versao instalada no computador. Em caso negativo edite o caminho antes de rodar o bat.
 
 ## Livro de Referência
 
 node.js Web Development for Beginners
-A Step-By-Steo Guide to Build an MVC Web Application With Node.js, Express and MongoDB
+A Step-By-Step Guide to Build an MVC Web Application With Node.js, Express and MongoDB
