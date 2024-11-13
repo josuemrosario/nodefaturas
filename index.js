@@ -53,8 +53,10 @@ app.use("/", usuarioRoutes);
 app.use("/dashboard", verificarUserLogado, dashboardRoutes);
 
 app.get("*", (req, res) => {
-  // res.status(404).send('Rota nao encontrada');
-  res.status(404).render("index", { mensagem: "Rota nao encontrada" });
+  res.status(404).render("index", {
+    mensagem: "Erro 404 - Rota nao encontrada",
+    titulo: "Rota nao encontrada",
+  });
   console.log("rota nao encontrada");
 });
 

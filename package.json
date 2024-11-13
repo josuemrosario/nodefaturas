@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "devcss": "postcss public/styles/tailwind.css -o public/styles/style.css -w"
+    "devcss": "postcss public/styles/tailwind.css -o public/styles/style.css -w",
+    "prodcss": "postcss public/styles/tailwind.css -o public/styles/style.css"
   },
   "keywords": [],
   "author": "",
