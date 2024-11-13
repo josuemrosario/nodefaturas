@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 
 require("dotenv").config();
-require("./libs/dbconnect");
+require("./libs/dbConnect");
 
 //configuracao de sessão (express session)
 app.use(
