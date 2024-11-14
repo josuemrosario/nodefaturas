@@ -22,13 +22,26 @@ nodefaturas é um sistema desenvolvido em aula para aprender a usar o node com o
 
 ## Ambiente em que foi desenvolvido
   
-- Sistema Operacional Windows
+- Sistema Operacional Windows 11
+- MongoDB 7.0
 - Vscode usando a extensão Prettier
 
 ## Instalação
 
 1 - Instalar o mongodb na maquina caso for utilizar banco localmente
+
 2 - Criar o arquivo .env (Basta renomeiar o arquivo .env_exemplo para .env e completar as configurações necessárias)
+
+MONGODB_URI - Linha de conexão de acesso ao mongoDB
+
+AUTH_SECRET - Uma string aleatória, gerada pelo openssl usada para assinar a sessão do usuário
+
+obs: A string pode ser gerada a partir deste site https://www.cryptool.org/en/cto/openssl/
+
+```sh
+openssl rand -base64 32
+```
+
 3 - instale todas as dependencias
 
 ```sh
